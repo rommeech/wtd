@@ -7,6 +7,9 @@
     <groupId>org.rp</groupId>
     <artifactId>wtd</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <packaging>war</packaging>
+
     <build>
         <plugins>
             <plugin>
@@ -17,16 +20,58 @@
                     <target>8</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.19.v20190610</version>
+                <configuration>
+                    <httpConnector>
+                        <port>1802</port>
+                    </httpConnector>
+                    <webApp>
+                        <contextPath>/wtd</contextPath>
+                    </webApp>
+                    <scanIntervalSeconds>5</scanIntervalSeconds>
+                    <!-- jettyXml>src/main/webapp/WEB-INF/jetty-env.xml</jettyXml -->
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
+    <properties>
+        <hibernate.version>5.4.4.Final</hibernate.version>
+        <spring.version>5.1.9.RELEASE</spring.version>
+    </properties>
+
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
         <!-- DB -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.4.4.Final</version>
+            <version>${hibernate.version}</version>
         </dependency>
 
     </dependencies>
